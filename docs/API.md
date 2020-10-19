@@ -11,6 +11,15 @@
 #### `static` Validator.valid
 * returns: <[boolean][boolean]> Defaults to `true`.
 
+#### `static` Validator.errors
+* returns: <[Errors](#class-errors)>
+
+#### `static` Validator.Error
+* returns: <[ValidatorError](#class-validatorerror)>
+
+#### `static` Validator.ValidationError
+* returns: <[ValidationError](#class-validationerror)>
+
 #### `static` Validator.has(object, path)
 * `object` <[Object][Object]>
 * `path` <[string][string] | [Array][Array]<[string][string]>> Must have format: `'object.property.name.array[0]'`, `['object', 'property', 'name', 'array[0]']`, `['object.property', 'name.array[0]']` or `'[-1]'`. Path with index `'[-1]'` will validate the last argument of the array, then `'[-2]'` will validate the second last argument. If the negative modulo index is greater than the length of the array, the first argument will be validated.
@@ -212,6 +221,10 @@
 #### `static` Validator.isPhoneNumber(value)
 * `value` <[any][Object]>
 * returns: <[boolean][boolean]>
+
+#### `static` Validator.from(value)
+* `value` <[any][Object]>
+* returns: <[Validator](#class-validator)>
 
 #### `init` new Validator(value)
 * `value` <[any][Object]>
@@ -420,3 +433,25 @@ Equivalent to <[validator.valid](#validatorvalid)>
 #### validator\[Symbol.toPrimitive](hint)
 * `hint` <[string][string]> Must be `'string'`, `'number'` or `'default'`.
 * returns: <[string][string] | [boolean][boolean]>
+
+### class: Errors
+#### `static` Errors.Error
+* returns: <[ValidatorError](#class-validatorerror)>
+
+#### `static` Errors.ValidationError
+* returns: <[ValidationError](#class-validationerror)>
+
+### class: ValidatorError
+* extends: <[CustomError][CustomError]>
+
+#### `static` ValidatorError.name
+* returns: <[string][string]> Defaults to `'ValidatorError'`.
+
+### class: ValidationError
+* extends: <[ValidatorError](#class-validatorerror)>
+
+#### `static` ValidationError.name
+* returns: <[string][string]> Defaults to `'ValidationError'`.
+
+#### `static` ValidationError.code
+* returns: <[string][string]> Defaults to `'invalid-value'`.
