@@ -1,0 +1,46 @@
+{
+  "name": "@darkwolf/validator.mjs",
+  "version": "1.0.0",
+  "description": "Validator",
+  "type": "module",
+  "exports": {
+    ".": "./lib/index.mjs",
+    "./": "./lib/",
+    "./errors": "./lib/errors/index.mjs",
+    "./errors/": "./lib/errors/",
+    "./errors/Error": "./lib/errors/Error.mjs",
+    "./errors/ValidationError": "./lib/errors/ValidationError.mjs",
+    "./Error": "./lib/errors/Error.mjs",
+    "./ValidationError": "./lib/errors/ValidationError.mjs",
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Darkwolf/node-validator.git"
+  },
+  "keywords": [
+    "darkwolf",
+    "dw",
+    "validator",
+    "mjs",
+    "validation",
+    "validate",
+    "builder"
+  ],
+  "author": "Pavel Wolf",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Darkwolf/node-validator/issues"
+  },
+  "homepage": "https://github.com/Darkwolf/node-validator#readme",
+  "dependencies": {
+    "@darkwolf/custom-error.mjs": "^1.0.1",
+    "@darkwolf/helper.mjs": "^1.0.2"
+  }
+}

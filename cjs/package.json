@@ -1,0 +1,35 @@
+{
+  "name": "@darkwolf/validator.cjs",
+  "version": "1.0.0",
+  "description": "Validator",
+  "main": "./lib/index.js",
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Darkwolf/node-validator.git"
+  },
+  "keywords": [
+    "darkwolf",
+    "dw",
+    "validator",
+    "cjs",
+    "validation",
+    "validate",
+    "builder"
+  ],
+  "author": "Pavel Wolf",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Darkwolf/node-validator/issues"
+  },
+  "homepage": "https://github.com/Darkwolf/node-validator#readme",
+  "dependencies": {
+    "@darkwolf/custom-error.cjs": "^1.0.1",
+    "@darkwolf/helper.cjs": "^1.0.2"
+  }
+}
