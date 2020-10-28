@@ -233,6 +233,22 @@ class Validator {
     return this.is(Helper.isBase64)
   }
 
+  isIPv4() {
+    return this.is(Helper.isIPv4)
+  }
+
+  isIPv6() {
+    return this.is(Helper.isIPv6)
+  }
+
+  isURL() {
+    return this.is(Helper.isURL)
+  }
+
+  isUUID() {
+    return this.is(Helper.isUUID)
+  }
+
   isEmail() {
     return this.is(Validator.isEmail)
   }
@@ -313,6 +329,10 @@ Validator.isEmpty = Helper.isEmpty
 Validator.isJSON = Helper.isJSON
 Validator.isASCII = Helper.isASCII
 Validator.isBase64 = Helper.isBase64
+Validator.isIPv4 = Helper.isIPv4
+Validator.isIPv6 = Helper.isIPv6
+Validator.isURL = Helper.isURL
+Validator.isUUID = Helper.isUUID
 Validator.isEmail = value => /^[\w-.]+@(?:(?:[a-z\d](?:[a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}$/.test(value)
 Validator.isPhoneNumber = value => /^\+[1-9]\d{6,14}$/.test(value)
 Validator.from = value => new Validator(value)

@@ -214,6 +214,22 @@
 * `value` <[any][Object]>
 * returns: <[boolean][boolean]>
 
+#### `static` Validator.isIPv4(value)
+* `value` <[any][Object]>
+* returns: <[boolean][boolean]>
+
+#### `static` Validator.isIPv6(value)
+* `value` <[any][Object]>
+* returns: <[boolean][boolean]>
+
+#### `static` Validator.isURL(value)
+* `value` <[any][Object]>
+* returns: <[boolean][boolean]>
+
+#### `static` Validator.isUUID(value)
+* `value` <[any][Object]>
+* returns: <[boolean][boolean]>
+
 #### `static` Validator.isEmail(value)
 * `value` <[any][Object]>
 * returns: <[boolean][boolean]>
@@ -407,6 +423,18 @@ Equivalent to <[validator.valid](#validatorvalid)>
 * returns: <[this](#class-validator)>
 
 #### validator.isBase64()
+* returns: <[this](#class-validator)>
+
+#### validator.isIPv4()
+* returns: <[this](#class-validator)>
+
+#### validator.isIPv6()
+* returns: <[this](#class-validator)>
+
+#### validator.isURL()
+* returns: <[this](#class-validator)>
+
+#### validate.isUUID()
 * returns: <[this](#class-validator)>
 
 #### validator.isEmail()

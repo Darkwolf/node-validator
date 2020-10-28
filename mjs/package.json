@@ -1,6 +1,6 @@
 {
   "name": "@darkwolf/validator.mjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Validator",
   "type": "module",
   "exports": {
@@ -41,6 +41,6 @@
   "homepage": "https://github.com/Darkwolf/node-validator#readme",
   "dependencies": {
     "@darkwolf/custom-error.mjs": "^1.0.1",
-    "@darkwolf/helper.mjs": "^1.0.2"
+    "@darkwolf/helper.mjs": "^1.0.5"
   }
 }

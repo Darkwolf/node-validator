@@ -14,14 +14,14 @@ const Validator = require('@darkwolf/validator.cjs')
 const { ValidationError } = Validator
 
 const validation = new Validator('Ave, Darkwolf!')
-  .isString() // Equivalent to .is(Validator.isString)
+  .isString()
   .validate((valid, value) => {
     if (!valid) {
       throw new ValidationError(value, 'Value must be a string.')
     }
   })
   .is(value => value.startsWith('Ave'))
-validation.valid // true
+validation.valid // => true
 if (!+validation) {
   throw new ValidationError(validation.value, 'Value must start with \'Ave\'.')
 }

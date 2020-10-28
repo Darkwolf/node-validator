@@ -59,6 +59,10 @@ export default class Validator {
   static isJSON = Helper.isJSON
   static isASCII = Helper.isASCII
   static isBase64 = Helper.isBase64
+  static isIPv4 = Helper.isIPv4
+  static isIPv6 = Helper.isIPv6
+  static isURL = Helper.isURL
+  static isUUID = Helper.isUUID
   static errors = errors
   static Error = Error
   static ValidationError = ValidationError
@@ -300,6 +304,22 @@ export default class Validator {
 
   isBase64() {
     return this.is(Helper.isBase64)
+  }
+
+  isIPv4() {
+    return this.is(Helper.isIPv4)
+  }
+
+  isIPv6() {
+    return this.is(Helper.isIPv6)
+  }
+
+  isURL() {
+    return this.is(Helper.isURL)
+  }
+
+  isUUID() {
+    return this.is(Helper.isUUID)
   }
 
   isEmail() {
