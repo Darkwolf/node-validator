@@ -35,6 +35,24 @@
 * `other` <[any][Object]>
 * returns: <[boolean][boolean]>
 
+#### `static` Validator.startsWith(string, searchValue[, position])
+* `string` <[string][string]>
+* `searchValue` <[any][Object]>
+* `position` <[number][number]>
+* returns: <[boolean][boolean]>
+
+#### `static` Validator.endsWith(string, searchValue[, length])
+* `string` <[string][string]>
+* `searchValue` <[any][Object]>
+* `length` <[number][number]>
+* returns: <[boolean][boolean]>
+
+#### `static` Validator.includes(input, searchValue[, fromIndex])
+* `input` <[string][string] | [Array][Array]>
+* `searchValue` <[any][Object]>
+* `fromIndex` <[number][number]>
+* returns: <[boolean][boolean]>
+
 #### `static` Validator.isType(value, type)
 * `value` <[any][Object]>
 * `type` <[string][string]>
@@ -288,6 +306,21 @@ Equivalent to <[validator.valid](#validatorvalid)>
 
 #### validator.equals(value)
 * `value` <[any][Object]>
+* returns: <[this](#class-validator)>
+
+#### validator.startsWith(searchValue[, position])
+* `searchValue` <[any][Object]>
+* `position` <[number][number]>
+* returns: <[this](#class-validator)>
+
+#### validator.endsWith(searchValue[, length])
+* `searchValue` <[any][Object]>
+* `length` <[number][number]>
+* returns: <[this](#class-validator)>
+
+#### validator.includes(searchValue[, fromIndex])
+* `searchValue` <[any][Object]>
+* `fromIndex` <[number][number]>
 * returns: <[this](#class-validator)>
 
 #### validator.isType(type)

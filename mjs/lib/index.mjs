@@ -15,6 +15,9 @@ export default class Validator {
   static has = Helper.has
   static exists = Helper.exists
   static equals = Helper.equals
+  static startsWith = Helper.startsWith
+  static endsWith = Helper.endsWith
+  static includes = Helper.includes
   static isType = Helper.isType
   static isTag = Helper.isTag
   static isInstance = Helper.isInstance
@@ -128,6 +131,18 @@ export default class Validator {
 
   equals(value) {
     return this.is(Helper.equals, value)
+  }
+
+  startsWith(searchValue, position) {
+    return this.is(Helper.startsWith, searchValue, position)
+  }
+
+  endsWith(searchValue, length) {
+    return this.is(Helper.endsWith, searchValue, length)
+  }
+
+  includes(searchValue, fromIndex) {
+    return this.is(Helper.includes, searchValue, fromIndex)
   }
 
   isType(type) {

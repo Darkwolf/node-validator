@@ -1,6 +1,6 @@
 {
   "name": "@darkwolf/validator.cjs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Validator",
   "main": "./lib/index.js",
   "engines": {
@@ -30,6 +30,6 @@
   "homepage": "https://github.com/Darkwolf/node-validator#readme",
   "dependencies": {
     "@darkwolf/custom-error.cjs": "^1.0.1",
-    "@darkwolf/helper.cjs": "^1.0.5"
+    "@darkwolf/helper.cjs": "^1.0.6"
   }
 }

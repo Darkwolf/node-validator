@@ -57,6 +57,18 @@ class Validator {
     return this.is(Helper.equals, value)
   }
 
+  startsWith(searchValue, position) {
+    return this.is(Helper.startsWith, searchValue, position)
+  }
+
+  endsWith(searchValue, length) {
+    return this.is(Helper.endsWith, searchValue, length)
+  }
+
+  includes(searchValue, fromIndex) {
+    return this.is(Helper.includes, searchValue, fromIndex)
+  }
+
   isType(type) {
     return this.is(Helper.isType, type)
   }
@@ -285,6 +297,9 @@ Validator.valid = true
 Validator.has = Helper.has
 Validator.exists = Helper.exists
 Validator.equals = Helper.equals
+Validator.startsWith = Helper.startsWith
+Validator.endsWith = Helper.endsWith
+Validator.includes = Helper.includes
 Validator.isType = Helper.isType
 Validator.isTag = Helper.isTag
 Validator.isInstance = Helper.isInstance

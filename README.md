@@ -20,7 +20,7 @@ const validation = new Validator('Ave, Darkwolf!')
       throw new ValidationError(value, 'Value must be a string.')
     }
   })
-  .is(value => value.startsWith('Ave'))
+  .startsWith('Ave')
 validation.valid // => true
 if (!+validation) {
   throw new ValidationError(validation.value, 'Value must start with \'Ave\'.')
