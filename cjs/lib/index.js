@@ -6,10 +6,10 @@ const {
 } = errors
 
 class Validator {
-  constructor(value) {
+  constructor(value, valid) {
     this
-      .reset()
       .setValue(value)
+      .setValid(valid)
   }
 
   get isValid() {
@@ -26,21 +26,24 @@ class Validator {
   }
 
   setValid(boolean) {
-    this.valid = boolean
+    this.valid = Helper.isBoolean(boolean) ? boolean : true
     return this
   }
 
   is(callback, ...args) {
     if (this.valid) {
-      this.setValid(this.valid && !!(Helper.isFunction(callback) ? callback(this.value, ...args) : callback))
+      const valid = callback(this.value, ...args)
+      if (!valid) {
+        this.valid = false
+      }
     }
     return this
   }
 
   validate(callback) {
-    const valid = callback(this.valid, this.value, this)
+    const valid = callback(this.value, this.valid, this)
     if (Helper.exists(valid)) {
-      this.setValid(!!valid)
+      this.valid = !!valid
     }
     return this
   }
@@ -49,8 +52,16 @@ class Validator {
     return this.is(Helper.has, path)
   }
 
-  exists(path) {
-    return this.is(Helper.exists, path)
+  hasIn(path) {
+    return this.is(Helper.hasIn, path)
+  }
+
+  exists() {
+    return this.is(Helper.exists)
+  }
+
+  existsIn(path) {
+    return this.is(Helper.existsIn, path)
   }
 
   equals(value) {
@@ -233,6 +244,14 @@ class Validator {
     return this.is(Helper.isEmpty)
   }
 
+  isKey() {
+    return this.is(Helper.isKey)
+  }
+
+  isIndex() {
+    return this.is(Helper.isIndex)
+  }
+
   isJSON() {
     return this.is(Helper.isJSON)
   }
@@ -270,11 +289,8 @@ class Validator {
   }
 
   reset() {
-    return this.setValid(Validator.valid)
-  }
-
-  clone() {
-    return new Validator(this.value).setValid(this.valid)
+    this.valid = true
+    return this
   }
 
   toString() {
@@ -289,13 +305,19 @@ class Validator {
     return this.valid
   }
 
+  clone() {
+    return new Validator(this.value, this.valid)
+  }
+
   [Symbol.toPrimitive](hint) {
     return hint === 'string' ? this.toString() : this.valueOf()
   }
 }
 Validator.valid = true
 Validator.has = Helper.has
+Validator.hasIn = Helper.hasIn
 Validator.exists = Helper.exists
+Validator.existsIn = Helper.existsIn
 Validator.equals = Helper.equals
 Validator.startsWith = Helper.startsWith
 Validator.endsWith = Helper.endsWith
@@ -341,6 +363,8 @@ Validator.isNonPositive = Helper.isNonPositive
 Validator.isNatural = Helper.isNatural
 Validator.isWhole = Helper.isWhole
 Validator.isEmpty = Helper.isEmpty
+Validator.isKey = Helper.isKey
+Validator.isIndex = Helper.isIndex
 Validator.isJSON = Helper.isJSON
 Validator.isASCII = Helper.isASCII
 Validator.isBase64 = Helper.isBase64

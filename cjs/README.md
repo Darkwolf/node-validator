@@ -15,7 +15,7 @@ const { ValidationError } = Validator
 
 const validation = new Validator('Ave, Darkwolf!')
   .isString()
-  .validate((valid, value) => {
+  .validate((value, valid) => {
     if (!valid) {
       throw new ValidationError(value, 'Value must be a string.')
     }
@@ -23,7 +23,7 @@ const validation = new Validator('Ave, Darkwolf!')
   .startsWith('Ave')
 validation.valid // => true
 if (!+validation) {
-  throw new ValidationError(validation.value, 'Value must start with \'Ave\'.')
+  throw new ValidationError(validation.value, `Value must start with 'Ave'.`)
 }
 ```
 ## [API Documentation](https://github.com/Darkwolf/node-validator/blob/master/docs/API.md)

@@ -22,12 +22,21 @@
 
 #### `static` Validator.has(object, path)
 * `object` <[Object][Object]>
-* `path` <[string][string] | [Array][Array]<[string][string]>> Must have format: `'object.property.name.array[0]'`, `['object', 'property', 'name', 'array[0]']`, `['object.property', 'name.array[0]']` or `'[-1]'`. Path with index `'[-1]'` will validate the last argument of the array, then `'[-2]'` will validate the second last argument. If the negative modulo index is greater than the length of the array, the first argument will be validated.
+* `path` <[string][string] | [Array][Array]<[string][string]>> Must have format: `'object.property.key.path[0]'`. If `undefined`, `null`, `''` or `[]` will not be validated.
+* returns: <[boolean][boolean]>
+
+#### `static` Validator.hasIn(object, path)
+* `object` <[Object][Object]>
+* `path` <[string][string] | [Array][Array]<[string][string]>> Must have format: `'object.property.key.path[0]'`. If `undefined`, `null`, `''` or `[]` will not be validated.
 * returns: <[boolean][boolean]>
 
 #### `static` Validator.exists(value[, path])
 * `value` <[any][Object]> If `undefined` or `null` will be return `false`.
-* `path` <[string][string] | [Array][Array]<[string][string]>> Must have format: `'object.property.name.array[0]'`, `['object', 'property', 'name', 'array[0]']`, `['object.property', 'name.array[0]']` or `'[-1]'`. Path with index `'[-1]'` will validate the last argument of the array, then `'[-2]'` will validate the second last argument. If the negative modulo index is greater than the length of the array, the first argument will be validated.
+* returns: <[boolean][boolean]>
+
+#### `static` Validator.existsIn(object, path)
+* `value` <[any][Object]> If `undefined` or `null` will be return `false`.
+* `path` <[string][string] | [Array][Array]<[string][string]>> Must have format: `'object.property.key.path[0]'`. If `undefined`, `null`, `''` or `[]` will not be validated.
 * returns: <[boolean][boolean]>
 
 #### `static` Validator.equals(value, other)
@@ -220,6 +229,15 @@
 * `value` <[any][Object]>
 * returns: <[boolean][boolean]>
 
+#### `static` Validator.isKey(value)
+* `value` <[any][Object]>
+* returns: <[boolean][boolean]>
+
+#### `static` Validator.isIndex(value[, length])
+* `value` <[any][Object]>
+* `length` <[number][number]>
+* returns: <[boolean][boolean]>
+
 #### `static` Validator.isJSON(value)
 * `value` <[any][Object]>
 * returns: <[boolean][boolean]>
@@ -256,19 +274,21 @@
 * `value` <[any][Object]>
 * returns: <[boolean][boolean]>
 
-#### `static` Validator.from(value)
+#### `static` Validator.from(value[, valid])
 * `value` <[any][Object]>
+* `valid` <[boolean][boolean]> Defaults to `true`.
 * returns: <[Validator](#class-validator)>
 
-#### `init` new Validator(value)
+#### `init` new Validator(value[, valid])
 * `value` <[any][Object]>
+* `valid` <[boolean][boolean]> Defaults to `true`.
 * returns: <[Validator](#class-validator)>
 
 #### validator.valid
 * returns: <[boolean][boolean]> Defaults to `true`.
 
 #### validator.value
-* returns: <[any][Object]>
+* returns: <[any][Object]> Defaults to `undefined`.
 
 #### `get` validator.isValid
 Equivalent to <[validator.valid](#validatorvalid)>
@@ -290,18 +310,25 @@ Equivalent to <[validator.valid](#validatorvalid)>
 * returns: <[this](#class-validator)>
 
 #### validator.validate(callback)
-* `callback` <[Function][Function]([boolean][boolean], [any][Object], [this](#class-validator))>
-  * `valid` <[boolean][boolean]> Defaults to `true`.
+* `callback` <[Function][Function]([any][Object], [boolean][boolean], [this](#class-validator))>
   * `value` <[any][Object]>
+  * `valid` <[boolean][boolean]> Defaults to `true`.
   * `validator` <[this](#class-validator)>
 * returns: <[this](#class-validator)>
 
 #### validator.has(path)
-* `path` <[string][string] | [Array][Array]<[string][string]>> Must have format: `'object.property.name.array[0]'`, `['object', 'property', 'name', 'array[0]']`, `['object.property', 'name.array[0]']` or `'[-1]'`. Path with index `'[-1]'` will validate the last argument of the array, then `'[-2]'` will validate the second last argument. If the negative modulo index is greater than the length of the array, the first argument will be validated.
+* `path` <[string][string] | [Array][Array]<[string][string]>> Must have format: `'object.property.key.path[0]'`. If `undefined`, `null`, `''` or `[]` will not be validated.
 * returns: <[this](#class-validator)>
 
-#### validator.exists([path])
-* `path` <[string][string] | [Array][Array]<[string][string]>> Must have format: `'object.property.name.array[0]'`, `['object', 'property', 'name', 'array[0]']`, `['object.property', 'name.array[0]']` or `'[-1]'`. Path with index `'[-1]'` will validate the last argument of the array, then `'[-2]'` will validate the second last argument. If the negative modulo index is greater than the length of the array, the first argument will be validated.
+#### validator.hasIn(path)
+* `path` <[string][string] | [Array][Array]<[string][string]>> Must have format: `'object.property.key.path[0]'`. If `undefined`, `null`, `''` or `[]` will not be validated.
+* returns: <[this](#class-validator)>
+
+#### validator.exists()
+* returns: <[this](#class-validator)>
+
+#### validator.existsIn(path)
+* `path` <[string][string] | [Array][Array]<[string][string]>> Must have format: `'object.property.key.path[0]'`. If `undefined`, `null`, `''` or `[]` will not be used.
 * returns: <[this](#class-validator)>
 
 #### validator.equals(value)
@@ -449,6 +476,12 @@ Equivalent to <[validator.valid](#validatorvalid)>
 #### validator.isEmpty()
 * returns: <[this](#class-validator)>
 
+#### validator.isKey()
+* returns: <[this](#class-validator)>
+
+#### validator.isIndex()
+* returns: <[this](#class-validator)>
+
 #### validator.isJSON()
 * returns: <[this](#class-validator)>
 
@@ -479,9 +512,6 @@ Equivalent to <[validator.valid](#validatorvalid)>
 #### validator.reset()
 * returns: <[this](#class-validator)>
 
-#### validator.clone()
-* returns: <[Validator](#class-validator)>
-
 #### validator.toString()
 * returns: <[string][string]>
 
@@ -490,6 +520,9 @@ Equivalent to <[validator.valid](#validatorvalid)>
 
 #### validator.toJSON()
 * returns: <[boolean][boolean]>
+
+#### validator.clone()
+* returns: <[Validator](#class-validator)>
 
 #### validator\[Symbol.toPrimitive](hint)
 * `hint` <[string][string]> Must be `'string'`, `'number'` or `'default'`.

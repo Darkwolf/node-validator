@@ -13,7 +13,9 @@ export {
 export default class Validator {
   static valid = true
   static has = Helper.has
+  static hasIn = Helper.hasIn
   static exists = Helper.exists
+  static existsIn = Helper.existsIn
   static equals = Helper.equals
   static startsWith = Helper.startsWith
   static endsWith = Helper.endsWith
@@ -59,6 +61,8 @@ export default class Validator {
   static isNatural = Helper.isNatural
   static isWhole = Helper.isWhole
   static isEmpty = Helper.isEmpty
+  static isKey = Helper.isKey
+  static isIndex = Helper.isIndex
   static isJSON = Helper.isJSON
   static isASCII = Helper.isASCII
   static isBase64 = Helper.isBase64
@@ -78,14 +82,14 @@ export default class Validator {
     return /^\+[1-9]\d{6,14}$/.test(value)
   }
 
-  static from(value) {
-    return new Validator(value)
+  static from(value, valid) {
+    return new Validator(value, valid)
   }
 
-  constructor(value) {
+  constructor(value, valid) {
     this
-      .reset()
       .setValue(value)
+      .setValid(valid)
   }
 
   get isValid() {
@@ -102,21 +106,24 @@ export default class Validator {
   }
 
   setValid(boolean) {
-    this.valid = boolean
+    this.valid = Helper.isBoolean(boolean) ? boolean : true
     return this
   }
 
   is(callback, ...args) {
     if (this.valid) {
-      this.setValid(this.valid && !!(Helper.isFunction(callback) ? callback(this.value, ...args) : callback))
+      const valid = callback(this.value, ...args)
+      if (!valid) {
+        this.valid = false
+      }
     }
     return this
   }
 
   validate(callback) {
-    const valid = callback(this.valid, this.value, this)
+    const valid = callback(this.value, this.valid, this)
     if (Helper.exists(valid)) {
-      this.setValid(!!valid)
+      this.valid = !!valid
     }
     return this
   }
@@ -125,8 +132,16 @@ export default class Validator {
     return this.is(Helper.has, path)
   }
 
-  exists(path) {
-    return this.is(Helper.exists, path)
+  hasIn(path) {
+    return this.is(Helper.hasIn, path)
+  }
+
+  exists() {
+    return this.is(Helper.exists)
+  }
+
+  existsIn(path) {
+    return this.is(Helper.existsIn, path)
   }
 
   equals(value) {
@@ -309,6 +324,14 @@ export default class Validator {
     return this.is(Helper.isEmpty)
   }
 
+  isKey() {
+    return this.is(Helper.isKey)
+  }
+
+  isIndex() {
+    return this.is(Helper.isIndex)
+  }
+
   isJSON() {
     return this.is(Helper.isJSON)
   }
@@ -346,11 +369,8 @@ export default class Validator {
   }
 
   reset() {
-    return this.setValid(Validator.valid)
-  }
-
-  clone() {
-    return new Validator(this.value).setValid(this.valid)
+    this.valid = true
+    return this
   }
 
   toString() {
@@ -363,6 +383,10 @@ export default class Validator {
 
   toJSON() {
     return this.valid
+  }
+
+  clone() {
+    return new Validator(this.value, this.valid)
   }
 
   [Symbol.toPrimitive](hint) {
